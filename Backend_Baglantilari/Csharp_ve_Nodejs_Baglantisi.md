@@ -48,3 +48,40 @@ class Program
         }
     }
 }
+## 2. JavaScript (Node.js) ile SQL Server Bağlantısı
+Modern web projelerinde veya Full-Stack uygulamalarda SQL Server'a bağlanmak için `mssql` paketi kullanılır. Projene terminalden `npm install mssql` diyerek paketi kurduktan sonra şu kodu kullanabilirsin:
+
+```javascript
+const sql = require('mssql');
+
+// 1. Adım: Veritabanı ayarlarını yap
+const config = {
+    user: 'kullanici_adin',
+    password: 'sifren',
+    server: 'localhost', // Veya sunucu IP adresi
+    database: 'Northwind',
+    options: {
+        encrypt: true, // Azure gibi bulut sistemleri için true
+        trustServerCertificate: true // Lokal geliştirme için true olmalı
+    }
+};
+
+// 2. Adım: Bağlan ve veriyi çek
+async function urunleriGetir() {
+    try {
+        await sql.connect(config);
+        console.log("Veritabanına başarıyla bağlanıldı! 🚀\n");
+
+        // En pahalı 5 ürünü getiren sorgu
+        const result = await sql.query`SELECT TOP 5 ProductName, UnitPrice FROM Products ORDER BY UnitPrice DESC`;
+        
+        console.log("--- En Pahalı 5 Ürün ---");
+        console.table(result.recordset); // Veriyi şık bir tablo olarak konsola yazdır
+        
+    } catch (err) {
+        console.error("Bağlantı hatası:", err);
+    }
+}
+
+// Fonksiyonu çalıştır
+urunleriGetir();
