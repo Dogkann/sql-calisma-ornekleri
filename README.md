@@ -1,6 +1,6 @@
 # 🗄️ SQL & Database Study Library
 
-This repository contains queries, database designs, and complex T-SQL examples developed during my SQL learning journey. It is created both as a guide for beginners and to track my own progress..
+This repository contains queries, database designs, and complex T-SQL examples developed during my SQL learning journey. It is created both as a guide for beginners and to track my own progress.
 
 ### 🗺️ Database Architecture (ER Diagram)
 ![Northwind Database Schema](ER_Diyagrami.png.png)
